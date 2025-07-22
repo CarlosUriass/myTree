@@ -7,7 +7,7 @@ A simple CLI tool that prints your project's directory tree using **emojis** and
 ## 🚀 Installation
 
 ```bash
-npm install -g mytree
+npm install -g mytree-cli
 ```
 
 This installs the global `mytree` command so you can run it from anywhere in your terminal.
