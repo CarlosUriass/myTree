@@ -43,10 +43,15 @@ if (iFlagIndex !== -1) {
   targetDir = args[0] || ".";
 }
 
-function printTree(dir, prefix = "") {
-  const items = fs
-    .readdirSync(dir, { withFileTypes: true })
-    .filter((item) => !ignoreList.includes(item.name));
+function printTree(dir, prefix = "", ignoredDirs = []) {
+  let items;
+
+  try {
+    items = fs.readdirSync(dir, { withFileTypes: true });
+  } catch (err) {
+    console.error(chalk.red(`🚫 Cannot access ${dir}: ${err.message}`));
+    return;
+  }
 
   const lastIndex = items.length - 1;
 
@@ -54,6 +59,7 @@ function printTree(dir, prefix = "") {
     const isLast = index === lastIndex;
     const pointer = isLast ? "└── " : "├── ";
     const newPrefix = prefix + (isLast ? "    " : "│   ");
+
     const fullPath = path.join(dir, item.name);
     const emoji = getEmoji(item.name, item.isDirectory());
 
@@ -63,8 +69,8 @@ function printTree(dir, prefix = "") {
 
     console.log(`${prefix}${pointer}${emoji} ${coloredName}`);
 
-    if (item.isDirectory()) {
-      printTree(fullPath, newPrefix);
+    if (item.isDirectory() && !ignoredDirs.includes(item.name)) {
+      printTree(fullPath, newPrefix, ignoredDirs);
     }
   });
 }
