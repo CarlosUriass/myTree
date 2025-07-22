@@ -1,0 +1,27 @@
+{
+  "name": "mytree",
+  "version": "1.0.0",
+  "description": "CLI tool to print directory trees with emojis and color",
+  "main": "index.js",
+  "type": "module",
+  "bin": {
+    "mytree": "./index.js"
+  },
+  "scripts": {
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "keywords": [
+    "tree",
+    "cli",
+    "filesystem",
+    "terminal",
+    "emoji",
+    "directory",
+    "colors"
+  ],
+  "author": "Carlos Urías <hicarlosurias@gmail.com> (https://carlosurias.com)",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^5.4.1"
+  }
+}

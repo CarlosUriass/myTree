@@ -1,0 +1,8 @@
+# Ignore these when publishing
+node_modules
+*.log
+.DS_Store
+.env
+.vscode
+.git
+README-local.md
