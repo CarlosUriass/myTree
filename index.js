@@ -40,8 +40,10 @@ if (iFlagIndex !== -1) {
   ignoreList = args[iFlagIndex + 1]?.split(",") || [];
   targetDir = args[0] || ".";
 } else {
-  targetDir = args[0] || ".";
+  targetDir = args.find((arg) => !arg.startsWith("-")) || ".";
 }
+
+const showHidden = args.includes("--all") || args.includes("-a");
 
 function printTree(dir, prefix = "", ignoredDirs = []) {
   let items;
@@ -52,6 +54,12 @@ function printTree(dir, prefix = "", ignoredDirs = []) {
     console.error(chalk.red(`🚫 Cannot access ${dir}: ${err.message}`));
     return;
   }
+
+  items = items.filter(
+    (item) =>
+      (showHidden || !item.name.startsWith(".")) &&
+      !ignoredDirs.includes(item.name)
+  );
 
   const lastIndex = items.length - 1;
 
@@ -69,11 +77,11 @@ function printTree(dir, prefix = "", ignoredDirs = []) {
 
     console.log(`${prefix}${pointer}${emoji} ${coloredName}`);
 
-    if (item.isDirectory() && !ignoredDirs.includes(item.name)) {
+    if (item.isDirectory()) {
       printTree(fullPath, newPrefix, ignoredDirs);
     }
   });
 }
 
 console.log(chalk.yellow(`\n📂 Tree of ${path.resolve(targetDir)}\n`));
-printTree(targetDir);
+printTree(targetDir, "", ignoreList);

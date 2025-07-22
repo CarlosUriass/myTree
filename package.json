@@ -1,6 +1,6 @@
 {
   "name": "mytree-cli",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "CLI tool to print directory trees with emojis and color",
   "main": "index.js",
   "type": "module",
