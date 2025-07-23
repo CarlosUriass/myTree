@@ -21,6 +21,14 @@
   ],
   "author": "Carlos Urías <hicarlosurias@gmail.com> (https://carlosurias.com)",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CarlosUriass/myTree.git"
+  },
+  "bugs": {
+    "url": "https://github.com/CarlosUriass/myTree/issues"
+  },
+  "homepage": "https://github.com/CarlosUriass/myTree#readme",
   "dependencies": {
     "chalk": "^5.4.1"
   }
